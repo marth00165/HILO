@@ -8,10 +8,19 @@ body {
   width: 150px;
   margin-bottom: 20px;
   margin-right: 5px;
+
 }
 
-#content1{}
-#content2{}
+#content1{
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+
+
+}
+#content2{
+  display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
 .smallButtons{
 
   border-color: transparent;

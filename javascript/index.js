@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", function(){
     newCard.innerText = "New Base Card"
     newCard.className = "smallButton"
     let smallFooter = document.getElementById('small')
+    let user1 = document.createElement("div")
+    let user2 = document.createElement("div")
+    content.appendChild(user1)
+    content2.appendChild(user2)
 
 
     //buttons append
@@ -34,20 +38,22 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
     //all cards
-    cards.forEach(function(cards){ 
+    for (var i = 0; i < 6; i++) {
     let image = document.createElement("img")
     image.src = deck.freshDeck[0].url
     image.className = "card"
     content.appendChild(image)
-    })
+    }
 
   //player 2 cards
-    cards2.forEach(function(card){
+    for (var i = 0; i < 6; i++) {
       let image = document.createElement("img")
       image.src = deck.freshDeck[0].url
       image.className = "card"
       content2.appendChild(image)
-      })
+      }
+
+
 
 
 })
