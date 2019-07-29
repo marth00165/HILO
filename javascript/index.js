@@ -1,9 +1,11 @@
-document.addEventListener("DOMContentLoaded", function() {
+
+let turn = 1;
+// document.addEventListener("DOMContentLoaded", function() {
   let user1Cards = []
   let user2Cards = []
   let user1Correct = []
   let user2Correct = []
-  let turn = 1;
+
   let deck = new Deck()
   let deck2 = new Deck()
   deck.shuffle()
@@ -20,12 +22,13 @@ document.addEventListener("DOMContentLoaded", function() {
   let higherButton = document.createElement("button")
   higherButton.innerText = "Higher"
   higherButton.addEventListener("click", function(e) {
-    betHigher(turn)
+    betHigher()
+    console.log(turn)
   })
   let lowerButton = document.createElement("button")
   lowerButton.innerText = "Lower"
   lowerButton.addEventListener("click", function(e) {
-    betLower(turn)
+    betLower()
   })
   higherButton.className = "button"
   lowerButton.className = "button"
@@ -98,47 +101,74 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-  function betHigher(turn) {
-    if (turn === 1 && user1Cards.length < 6) {
-      content.innerHTML = ""
-      let card = deck.deal()
-      user1Cards.push(card)
-      player1Cards()
-      setTimeout(function() {
-        console.log(compareCardsHigher(user1Cards))
-        if (!compareCardsHigher(user1Cards)) {
-          content.innerHTML = ""
-          user1Cards = [base1]
-          player1Cards()
-        }
-      }, 2750);
-    } else if (turn === 2 && user2Cards.length < 6) {
-      content2.innerHTML = ""
-      let card = deck.deal()
-      user2Cards.push(card)
-      player2Cards()
-    }
-  }
+  function betHigher() {
 
-  function betLower(turn){
+    //player 1
     if (turn === 1 && user1Cards.length < 6) {
       content.innerHTML = ""
       let card = deck.deal()
       user1Cards.push(card)
       player1Cards()
+        if (!compareCardsHigher(user1Cards)) {
+            turn = 2;
+            console.log(compareCardsHigher(user1Cards))
+            console.log(turn)
+            setTimeout(function() {
+            content.innerHTML = ""
+            user1Cards = [base1]
+          player1Cards()
+      }, 2000)};
+    }
+    //player 2
+     else if (turn === 2 && user2Cards.length < 6) {
+      content2.innerHTML = ""
+      let card = deck2.deal()
+      user2Cards.push(card)
+      player2Cards()
       setTimeout(function() {
-        console.log(compareCardsLower(user1Cards))
-        if (!compareCardsLower(user1Cards)) {
+        console.log(compareCardsHigher(user2Cards))
+        if (!compareCardsHigher(user2Cards)) {
+          content2.innerHTML = ""
+          user2Cards = [base2]
+          turn = 1;
+          console.log(turn)
+          player2Cards()
+        }
+      }, 2000);
+  }
+}
+
+  function betLower(){
+    if (turn === 1 && user1Cards.length < 6) {
+      content.innerHTML = ""
+      let card = deck.deal()
+      user1Cards.push(card)
+      player1Cards()
+      if (!compareCardsLower(user1Cards)) {
+          console.log(compareCardsLower(user1Cards))
+          turn = 2;
+          console.log(turn)
+          setTimeout(function() {
           content.innerHTML = ""
           user1Cards = [base1]
           player1Cards()
-        }
-      }, 2750);
+      }, 2750)};
     } else if (turn === 2 && user2Cards.length < 6) {
       content2.innerHTML = ""
-      let card = deck.deal()
+      let card = deck2.deal()
       user2Cards.push(card)
       player2Cards()
+
+      setTimeout(function() {
+        console.log(compareCardsLower(user2Cards))
+        if (!compareCardsLower(user2Cards)) {
+          content2.innerHTML = ""
+          user2Cards = [base2]
+          turn = 1;
+          console.log(turn)
+          player2Cards()
+        }
+      }, 2750);
     }
   }
 
@@ -165,4 +195,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
   player1Cards()
   player2Cards()
-})
+// })
