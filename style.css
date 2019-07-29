@@ -11,15 +11,25 @@ body {
 
 }
 
-#content1{
+.big-container{
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-
-
+  grid-template-columns: repeat(8);
 }
+
+#user2 {
+}
+
+#user2 img{
+  max-height: 40px;
+}
+
+#content1{
+  grid-columns: 2, 6;
+}
+
 #content2{
-  display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-columns: 2, 6;
+
 }
 .smallButtons{
 

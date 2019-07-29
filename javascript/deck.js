@@ -65,15 +65,18 @@ class Deck {
     shuffle() {
         let deck = this.current;
         let m = deck.length, i;
-       
+
         while (m) {
           i = Math.floor(Math.random() * m--);
-       
+
           [deck[m], deck[i]] = [deck[i], deck[m]];
         }
-       
+
         this.current = deck
         return deck;
        }
-}
 
+    deal(){
+      return this.current.pop();
+     }
+}
