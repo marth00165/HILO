@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function(){
     let deck = new Deck()
     let deck2 = new Deck()
-    let cards2 = deck2.freshDeck
-    let cards = deck.freshDeck
+    deck.shuffle()
+    deck2.shuffle()
+    let cards2 = deck2.current
+    let cards = deck.current
     let content = document.getElementById("content1")
     let content2 = document.getElementById('content2')
     let footer = document.getElementById('footer')
@@ -39,10 +41,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
     //all cards
     for (var i = 0; i < 6; i++) {
+    deck.shuffle()
     let image = document.createElement("img")
-    image.src = deck.freshDeck[0].url
+    image.src = deck.current[0].url
     image.className = "card"
     content.appendChild(image)
+    deck.current.shift()
     }
 
     
@@ -51,9 +55,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
   //player 2 cards
     for (var i = 0; i < 6; i++) {
+      deck2.shuffle()
       let image = document.createElement("img")
-      image.src = deck.freshDeck[0].url
+      image.src = deck2.current[0].url
       image.className = "card"
       content2.appendChild(image)
+      deck2.current.shift()
       }
 })
