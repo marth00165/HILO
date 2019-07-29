@@ -58,6 +58,7 @@ class Deck {
             {faceValue: "14S", url: "../images/cards/AS.png" },
             ]
 
+
         this.current = this.freshDeck
     }
 
@@ -75,3 +76,4 @@ class Deck {
         return deck;
        }
 }
+
