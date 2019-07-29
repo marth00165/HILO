@@ -45,6 +45,10 @@ document.addEventListener("DOMContentLoaded", function(){
     content.appendChild(image)
     }
 
+    
+    
+
+
   //player 2 cards
     for (var i = 0; i < 6; i++) {
       let image = document.createElement("img")
@@ -52,8 +56,4 @@ document.addEventListener("DOMContentLoaded", function(){
       image.className = "card"
       content2.appendChild(image)
       }
-
-
-
-
 })
