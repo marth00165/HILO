@@ -1,7 +1,4 @@
-let turn = 1;
-
-
-// document.addEventListener("DOMContentLoaded", function() {
+  let turn = 1;
   let user1Cards = []
   let user2Cards = []
   let user1Correct = []
@@ -48,23 +45,26 @@ let turn = 1;
   newBaseCardButton.addEventListener("click", newBaseCard)
   let smallFooter = document.getElementById('small')
   let user1 = document.createElement("div")
+  user1.innerText = "s p e n c e r"
   let user2 = document.createElement("div")
-  content.appendChild(user1)
-  content2.appendChild(user2)
+  user2.innerText = "El-CuRRY"
+
+  function appendGame(){
 
 
+    content.appendChild(user1)
+    content2.appendChild(user2)
+    //buttons append
+    let smallbuttons = [higherButton, lowerButton]
+    smallbuttons.forEach(function(button) {
+      smallFooter.appendChild(button)
+    })
 
-
-  //buttons append
-  let smallbuttons = [higherButton, lowerButton]
-  smallbuttons.forEach(function(button) {
-    smallFooter.appendChild(button)
-  })
-
-  let buttons = [holdButton, newBaseCardButton]
-  buttons.forEach(function(button) {
-    footer.appendChild(button)
-  })
+    let buttons = [holdButton, newBaseCardButton]
+    buttons.forEach(function(button) {
+      footer.appendChild(button)
+    })
+  }
 
 
   //player1  cards
@@ -305,6 +305,34 @@ let turn = 1;
   }
 
 
-  player1Cards()
-  player2Cards()
-// })
+function welcome(){
+  let body = document.getElementById('body')
+  let logo = document.createElement('h1')
+  let motto = document.createElement('h3')
+  let start = document.createElement('button')
+  let startButton = document.getElementById('startButton')
+  startButton.addEventListener("click", function(e){
+    body.removeChild(logo)
+    body.removeChild(motto)
+    body.removeChild(startButton)
+    appendGame()
+    player1Cards()
+    player2Cards()
+  })
+  start.innerText = "NEW GAME"
+  logo.innerText = "Hi-Low"
+  motto.innerText = "Aim High Score Low"
+  body.appendChild(logo)
+  body.appendChild(motto)
+  body.appendChild(startButton)
+  startButton.appendChild(start)
+
+}
+
+welcome()
+
+function main(){
+
+
+
+}
