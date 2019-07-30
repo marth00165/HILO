@@ -147,6 +147,7 @@ let turn = 1;
   }
   setTimeout(function () {
     enableMostButtons()
+    checkWinner()
   }, 1000);
 }
 
@@ -188,6 +189,7 @@ let turn = 1;
       }
     }
     setTimeout(function () {
+      checkWinner()
       enableMostButtons()
     }, 1000);
   }
@@ -292,6 +294,14 @@ let turn = 1;
     higherButton.style.background = "#FF5258"
     lowerButton.style.background = "#FF5258"
     holdButton.style.background = "#FF5258"
+  }
+
+  function checkWinner(){
+      if(user1Cards.length === 6){
+          alert("Player 1 wins!")
+      }else if (user2Cards.length === 6){
+          alert("Player 2 wins!")
+      }
   }
 
 
