@@ -1,57 +1,55 @@
-  let turn = 1;
-  let user1Cards = []
-  let user2Cards = []
-  let user1Correct = []
-  let user2Correct = []
-
-
-  let deck = new Deck()
-  let deck2 = new Deck()
-  deck.shuffle()
-  user1Cards.push(deck.deal())
-
-
-  deck.base.push(user1Cards[0])
-  deck2.shuffle()
-  user2Cards.push(deck2.deal())
-  deck2.base.push(user2Cards[0])
-
-  let cards2 = deck2.current
-  let cards = deck.current
-  let content = document.getElementById("content1")
-  let content2 = document.getElementById('content2')
-  let footer = document.getElementById('footer')
-  let higherButton = document.createElement("button")
-  higherButton.innerText = "Higher"
-  higherButton.addEventListener("click", function(e) {
-    disableButtons()
-    betHigher()
-  })
-  let lowerButton = document.createElement("button")
-  lowerButton.innerText = "Lower"
-  lowerButton.addEventListener("click", function(e) {
-    disableButtons()
-    betLower()
-  })
-  higherButton.className = "button"
-  lowerButton.className = "button"
-  let holdButton = document.createElement('button')
-  holdButton.addEventListener("click", holdCards)
-  holdButton.innerText = "Hold Cards"
-  holdButton.className = "smallButton"
-  let newBaseCardButton = document.createElement('button')
-  newBaseCardButton.innerText = "New Base Card"
-  newBaseCardButton.className = "smallButton"
-  newBaseCardButton.addEventListener("click", newBaseCard)
-  let smallFooter = document.getElementById('small')
-  let user1 = document.createElement("div")
-  user1.innerText = "s p e n c e r"
-  let user2 = document.createElement("div")
-  user2.innerText = "El-CuRRY"
+  function variables() {
+        turn = 1;
+        user1Cards = []
+        user2Cards = []
+        user1Correct = []
+        user2Correct = []
+        deck = new Deck()
+        deck2 = new Deck()
+        deck.shuffle()
+        user1Cards.push(deck.deal())
+        deck.base.push(user1Cards[0])
+        deck2.shuffle()
+        user2Cards.push(deck2.deal())
+        deck2.base.push(user2Cards[0])
+        cards2 = deck2.current
+        cards = deck.current
+        content = document.getElementById("content1")
+        content2 = document.getElementById('content2')
+        footer = document.getElementById('footer')
+        higherButton = document.createElement("button")
+        higherButton.innerText = "Higher"
+        higherButton.addEventListener("click", function(e) {
+            disableButtons()
+            betHigher()
+        })
+        lowerButton = document.createElement("button")
+        lowerButton.innerText = "Lower"
+        lowerButton.addEventListener("click", function(e) {
+            disableButtons()
+            betLower()
+        })
+        higherButton.className = "button"
+        lowerButton.className = "button"
+        holdButton = document.createElement('button')
+        holdButton.addEventListener("click", holdCards)
+        holdButton.innerText = "Hold Cards"
+        holdButton.className = "smallButton"
+        newBaseCardButton = document.createElement('button')
+        newBaseCardButton.innerText = "New Base Card"
+        newBaseCardButton.className = "smallButton"
+        newBaseCardButton.addEventListener("click", newBaseCard)
+        smallFooter = document.getElementById('small')
+        user1 = document.createElement("div")
+        user1.innerText = "s p e n c e r"
+        user2 = document.createElement("div")
+        user2.innerText = "El-CuRRY"
+    }
 
   function appendGame(){
 
-
+    let tracker = document.getElementById("user1")
+    tracker.id = "displayed"
     content.appendChild(user1)
     content2.appendChild(user2)
     //buttons append
@@ -299,13 +297,19 @@
   function checkWinner(){
       if(user1Cards.length === 6){
           alert("Player 1 wins!")
+          document.body.innerHTML = clone
+          welcome()
       }else if (user2Cards.length === 6){
           alert("Player 2 wins!")
+          document.body.innerHTML = clone
+          welcome()
       }
   }
 
 
 function welcome(){
+  variables()
+  clone = document.body.innerHTML
   let body = document.getElementById('body')
   let logo = document.createElement('h1')
   let motto = document.createElement('h3')
