@@ -27,12 +27,14 @@ let turn = 1;
   let higherButton = document.createElement("button")
   higherButton.innerText = "Higher"
   higherButton.addEventListener("click", function(e) {
+    newBaseCardButton.disabled = true;
     higherButton.disabled = true;
     betHigher()
   })
   let lowerButton = document.createElement("button")
   lowerButton.innerText = "Lower"
   lowerButton.addEventListener("click", function(e) {
+    newBaseCardButton.disabled = true;
     lowerButton.disabled = true;
     betLower()
   })
@@ -42,9 +44,10 @@ let turn = 1;
   holdButton.addEventListener("click", holdCards)
   holdButton.innerText = "Hold Cards"
   holdButton.className = "smallButton"
-  let newCard = document.createElement('button')
-  newCard.innerText = "New Base Card"
-  newCard.className = "smallButton"
+  let newBaseCardButton = document.createElement('button')
+  newBaseCardButton.innerText = "New Base Card"
+  newBaseCardButton.className = "smallButton"
+  newBaseCardButton.addEventListener("click", newBaseCard)
   let smallFooter = document.getElementById('small')
   let user1 = document.createElement("div")
   let user2 = document.createElement("div")
@@ -60,7 +63,7 @@ let turn = 1;
     smallFooter.appendChild(button)
   })
 
-  let buttons = [holdButton, newCard]
+  let buttons = [holdButton, newBaseCardButton]
   buttons.forEach(function(button) {
     footer.appendChild(button)
   })
@@ -116,7 +119,7 @@ let turn = 1;
       user1Cards.push(card)
       player1Cards()
         if (!compareCardsHigher(user1Cards)) {
-            user1Cards = []
+          newBaseCardButton.disabled = false;
             turn = 2;
             console.log(deck.base)
             user1Cards = deck.base.map(e => e)
@@ -135,6 +138,7 @@ let turn = 1;
       user2Cards.push(card)
       player2Cards()
       if (!compareCardsHigher(user2Cards)) {
+        newBaseCardButton.disabled = false;
         turn = 1;
         setTimeout(function() {
           content2.innerHTML = ""
@@ -155,6 +159,7 @@ let turn = 1;
       user1Cards.push(card)
       player1Cards()
       if (!compareCardsLower(user1Cards)) {
+        newBaseCardButton.disabled = false;
           turn = 2;
           setTimeout(function() {
             content.innerHTML = ""
@@ -170,7 +175,7 @@ let turn = 1;
       player2Cards()
 
       if (!compareCardsLower(user2Cards)) {
-
+        newBaseCardButton.disabled = false;
         turn = 1;
         setTimeout(function() {
           content2.innerHTML = ""
@@ -208,6 +213,7 @@ let turn = 1;
   }
 
   function holdCards() {
+    newBaseCardButton.disabled = false;
     if(turn === 1){
       turn = 2
       deck.base.length = 0
@@ -219,6 +225,29 @@ let turn = 1;
       deck2.base = user2Cards.map(e => e)
     }
 
+  }
+
+  function newBaseCard(){
+    if (turn === 1){
+      deck.base.pop()
+      user1Cards.pop()
+      let newCard = deck.deal()
+      deck.base.push(newCard)
+      user1Cards.push(newCard)
+      content.innerHTML = ""
+      newBaseCardButton.disabled = true;
+      player1Cards()
+    }
+    else if(turn === 2) {
+      deck2.base.pop()
+      user2Cards.pop()
+      let newCard = deck2.deal()
+      deck2.base.push(newCard)
+      user2Cards.push(newCard)
+      content2.innerHTML = ""
+      newBaseCardButton.disabled = true;
+      player2Cards()
+    }
   }
 
 
