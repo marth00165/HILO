@@ -24,15 +24,13 @@
   let higherButton = document.createElement("button")
   higherButton.innerText = "Higher"
   higherButton.addEventListener("click", function(e) {
-    newBaseCardButton.disabled = true;
-    higherButton.disabled = true;
+    disableButtons()
     betHigher()
   })
   let lowerButton = document.createElement("button")
   lowerButton.innerText = "Lower"
   lowerButton.addEventListener("click", function(e) {
-    newBaseCardButton.disabled = true;
-    lowerButton.disabled = true;
+    disableButtons()
     betLower()
   })
   higherButton.className = "button"
@@ -113,7 +111,6 @@
 
     //player 1
     if (turn === 1 && user1Cards.length < 6) {
-      console.log(deck.base)
       content.innerHTML = ""
       let card = deck.deal()
       user1Cards.push(card)
@@ -121,9 +118,9 @@
         if (!compareCardsHigher(user1Cards)) {
           newBaseCardButton.disabled = false;
             turn = 2;
-            console.log(deck.base)
             user1Cards = deck.base.map(e => e)
             setTimeout(function() {
+              changeTurns()
               content.innerHTML = ""
               player1Cards()
       }, 2000)}else{
@@ -141,6 +138,7 @@
         newBaseCardButton.disabled = false;
         turn = 1;
         setTimeout(function() {
+          changeTurns()
           content2.innerHTML = ""
           user2Cards = deck2.base.map(e => e)
           player2Cards()
@@ -148,7 +146,8 @@
       }
   }
   setTimeout(function () {
-    higherButton.disabled = false;
+    enableMostButtons()
+    checkWinner()
   }, 1000);
 }
 
@@ -162,13 +161,15 @@
         newBaseCardButton.disabled = false;
           turn = 2;
           setTimeout(function() {
+            changeTurns()
             content.innerHTML = ""
             console.log(deck.base)
             user1Cards = deck.base.map(e => e)
             player1Cards()
           }, 2000)}else{
           }
-    } else if (turn === 2 && user2Cards.length < 6) {
+    } 
+    else if (turn === 2 && user2Cards.length < 6) {
       content2.innerHTML = ""
       let card = deck2.deal()
       user2Cards.push(card)
@@ -178,6 +179,7 @@
         newBaseCardButton.disabled = false;
         turn = 1;
         setTimeout(function() {
+          changeTurns()
           content2.innerHTML = ""
           user2Cards = deck2.base.map(e => e)
           player2Cards()
@@ -187,7 +189,8 @@
       }
     }
     setTimeout(function () {
-      lowerButton.disabled = false;
+      checkWinner()
+      enableMostButtons()
     }, 1000);
   }
 
@@ -215,11 +218,13 @@
   function holdCards() {
     newBaseCardButton.disabled = false;
     if(turn === 1){
+      changeTurns()
       turn = 2
       deck.base.length = 0
       deck.base = user1Cards.map(e => e)
     }
     else if(turn === 2){
+      changeTurns()
       turn = 1
       deck2.base.length = 0
       deck2.base = user2Cards.map(e => e)
@@ -236,6 +241,7 @@
       user1Cards.push(newCard)
       content.innerHTML = ""
       newBaseCardButton.disabled = true;
+      newBaseCardButton.style.background = "#7298B3"
       player1Cards()
     }
     else if(turn === 2) {
@@ -246,8 +252,56 @@
       user2Cards.push(newCard)
       content2.innerHTML = ""
       newBaseCardButton.disabled = true;
+      newBaseCardButton.style.background = "#7298B3"
       player2Cards()
     }
+  }
+
+  function changeTurns() {
+      enableButtons()
+      let on = document.getElementById("displayed")
+      let off = document.getElementById("off")
+      on.id = "off"
+      off.id = "displayed"
+  }
+
+  function disableButtons(){
+      higherButton.disabled = true
+      lowerButton.disabled = true
+      holdButton.disabled = true
+      newBaseCardButton.disabled = true
+      higherButton.style.background = "#7298B3"
+      lowerButton.style.background = "#7298B3"
+      holdButton.style.background = "#7298B3"
+      newBaseCardButton.style.background = "#7298B3"
+  }
+
+  function enableButtons(){
+    higherButton.disabled = false
+    lowerButton.disabled = false
+    holdButton.disabled = false
+    newBaseCardButton.disabled = false
+    higherButton.style.background = "#FF5258"
+    lowerButton.style.background = "#FF5258"
+    holdButton.style.background = "#FF5258"
+    newBaseCardButton.style.background = "#FF5258"
+  }
+
+  function enableMostButtons(){
+    higherButton.disabled = false
+    lowerButton.disabled = false
+    holdButton.disabled = false
+    higherButton.style.background = "#FF5258"
+    lowerButton.style.background = "#FF5258"
+    holdButton.style.background = "#FF5258"
+  }
+
+  function checkWinner(){
+      if(user1Cards.length === 6){
+          alert("Player 1 wins!")
+      }else if (user2Cards.length === 6){
+          alert("Player 2 wins!")
+      }
   }
 
 
