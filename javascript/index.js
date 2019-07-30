@@ -1,5 +1,6 @@
-
 let turn = 1;
+
+
 // document.addEventListener("DOMContentLoaded", function() {
   let user1Cards = []
   let user2Cards = []
@@ -12,13 +13,11 @@ let turn = 1;
   deck.shuffle()
   user1Cards.push(deck.deal())
 
-  user1Correct = [user1Cards[0]]
-  let base1 = user1Cards[0]
 
+  deck.base.push(user1Cards[0])
   deck2.shuffle()
   user2Cards.push(deck2.deal())
-  user2Correct = [user1Cards[0]]
-  let base2 = user2Cards[0]
+  deck2.base.push(user2Cards[0])
 
   let cards2 = deck2.current
   let cards = deck.current
@@ -40,10 +39,9 @@ let turn = 1;
   higherButton.className = "button"
   lowerButton.className = "button"
   let holdButton = document.createElement('button')
+  holdButton.addEventListener("click", holdCards)
   holdButton.innerText = "Hold Cards"
   holdButton.className = "smallButton"
-
-  holdButton.addEventListener("click", holdCards)
   let newCard = document.createElement('button')
   newCard.innerText = "New Base Card"
   newCard.className = "smallButton"
@@ -70,8 +68,6 @@ let turn = 1;
 
   //player1  cards
   function player1Cards() {
-    console.log("base", base1)
-    console.log(user1Cards)
     user1Cards.forEach(card => {
       let image = document.createElement("img")
       image.src = card.url
@@ -111,19 +107,26 @@ let turn = 1;
 
 
   function betHigher() {
+
     //player 1
     if (turn === 1 && user1Cards.length < 6) {
+      console.log(deck.base)
       content.innerHTML = ""
       let card = deck.deal()
       user1Cards.push(card)
       player1Cards()
         if (!compareCardsHigher(user1Cards)) {
+            user1Cards = []
             turn = 2;
+            console.log(deck.base)
+            user1Cards = deck.base.map(e => e)
             setTimeout(function() {
-            content.innerHTML = ""
-            user1Cards = [base1]
-            player1Cards()
-      }, 2000)}
+              content.innerHTML = ""
+              player1Cards()
+      }, 2000)}else{
+      }
+
+
     }
     //player 2
      else if (turn === 2 && user2Cards.length < 6) {
@@ -135,9 +138,10 @@ let turn = 1;
         turn = 1;
         setTimeout(function() {
           content2.innerHTML = ""
-          user2Cards = [base2]
+          user2Cards = deck2.base.map(e => e)
           player2Cards()
-      }, 2000)}
+      }, 2000)}else{
+      }
   }
   setTimeout(function () {
     higherButton.disabled = false;
@@ -151,14 +155,14 @@ let turn = 1;
       user1Cards.push(card)
       player1Cards()
       if (!compareCardsLower(user1Cards)) {
-
           turn = 2;
-          user1Cards
           setTimeout(function() {
             content.innerHTML = ""
-            user1Cards = [base1]
+            console.log(deck.base)
+            user1Cards = deck.base.map(e => e)
             player1Cards()
-          }, 2750)}
+          }, 2000)}else{
+          }
     } else if (turn === 2 && user2Cards.length < 6) {
       content2.innerHTML = ""
       let card = deck2.deal()
@@ -170,11 +174,12 @@ let turn = 1;
         turn = 1;
         setTimeout(function() {
           content2.innerHTML = ""
-          user2Cards = [base2]
+          user2Cards = deck2.base.map(e => e)
           player2Cards()
 
 
-      }, 2750)}
+      }, 2000)}else{
+      }
     }
     setTimeout(function () {
       lowerButton.disabled = false;
@@ -202,18 +207,20 @@ let turn = 1;
     }
   }
 
-  function holdCards(){
-    if (turn === 1) {
-      base1 = user1Correct
-      user1Cards = user1Correct
+  function holdCards() {
+    if(turn === 1){
       turn = 2
+      deck.base.length = 0
+      deck.base = user1Cards.map(e => e)
     }
-    else {
-      base2 = user2Correct
-      user2cards = user2Correct
+    else if(turn === 2){
       turn = 1
+      deck2.base.length = 0
+      deck2.base = user2Cards.map(e => e)
     }
+
   }
+
 
   player1Cards()
   player2Cards()

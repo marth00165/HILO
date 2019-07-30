@@ -60,6 +60,7 @@ class Deck {
 
 
         this.current = this.freshDeck
+        this.base = []
     }
 
     shuffle() {
@@ -79,4 +80,5 @@ class Deck {
     deal(){
       return this.current.pop();
      }
+
 }
