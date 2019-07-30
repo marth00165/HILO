@@ -123,6 +123,23 @@ h3 {
   margin-left: 50px;
 }
 
+ .smallButtons button:hover {background-color: #E0B30D}
+
+ .smallButtons button:active {
+  background-color: #E0B30D;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.smallButton:hover {background-color: #E0B30D}
+
+.smallButton:active {
+ background-color: #E0B30D;
+ box-shadow: 0 5px #666;
+ transform: translateY(4px);
+}
+
+
 #footer {
   border-top: 2px, #F9C80E;
 
