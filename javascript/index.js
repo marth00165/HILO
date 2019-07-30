@@ -14,6 +14,16 @@
         deck2.base.push(user2Cards[0])
         cards2 = deck2.current
         cards = deck.current
+        user1info = document.getElementById("player1info")
+        avatar1 = document.createElement("img")
+        avatar1.src = "../images/avatars/hot_dog.jpg"
+        hr1 = document.createElement("hr")
+        hr1.className = "user-hr"
+        user2info = document.getElementById("player2info")
+        avatar2 = document.createElement("img")
+        avatar2.src = "../images/avatars/hot_dog.jpg"
+        hr2 = document.createElement("hr")
+        hr2.className = "user-hr"
         content = document.getElementById("content1")
         content2 = document.getElementById('content2')
         footer = document.getElementById('footer')
@@ -40,18 +50,16 @@
         newBaseCardButton.className = "smallButton"
         newBaseCardButton.addEventListener("click", newBaseCard)
         smallFooter = document.getElementById('small')
-        user1 = document.createElement("div")
-        user1.innerText = "s p e n c e r"
-        user2 = document.createElement("div")
-        user2.innerText = "El-CuRRY"
     }
 
   function appendGame(){
 
     let tracker = document.getElementById("user1")
     tracker.id = "displayed"
-    content.appendChild(user1)
-    content2.appendChild(user2)
+    user1info.appendChild(avatar1)
+    user1info.appendChild(hr1)
+    user2info.appendChild(avatar2)
+    user2info.appendChild(hr2)
     //buttons append
     let smallbuttons = [higherButton, lowerButton]
     smallbuttons.forEach(function(button) {
