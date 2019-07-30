@@ -168,7 +168,7 @@
             player1Cards()
           }, 2000)}else{
           }
-    } 
+    }
     else if (turn === 2 && user2Cards.length < 6) {
       content2.innerHTML = ""
       let card = deck2.deal()
@@ -311,7 +311,7 @@ function welcome(){
   let motto = document.createElement('h3')
   let start = document.createElement('button')
   let startButton = document.getElementById('startButton')
-  startButton.addEventListener("click", function(e){
+  start.addEventListener("click", function(e){
     body.removeChild(logo)
     body.removeChild(motto)
     body.removeChild(startButton)
