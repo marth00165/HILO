@@ -464,6 +464,13 @@ function openRules(){
     span.onclick = function() {
         rulesModal.style.display = "none";
       }
+      window.addEventListener("keydown",function(e){
+        var key = e.which || e.keyCode;
+   
+        if ( rulesModal.style.display = "block" && key === 27){
+          rulesModal.style.display = "none";
+        }
+      })
       window.onclick = function(event) {
         if (event.target == rulesModal) {
           rulesModal.style.display = "none";
