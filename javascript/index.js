@@ -1,8 +1,10 @@
+const hostRight = ["../images/therat/right/amazed.png", "../images/therat/right/cool.png", "../images/therat/right/glimmer.png", "../images/therat/right/right.png", "../images/therat/right/roll.png", "../images/therat/right/wild.png", "../images/therat/right/wowRight.png"]
+const hostWrong = ["../images/therat/wrong/bigOOF.png", "../images/therat/wrong/crickets.png", "../images/therat/wrong/disappointedDad.png", "../images/therat/wrong/firstTime.png", "../images/therat/wrong/grandmaBridge.png", "../images/therat/wrong/hurt.png", "../images/therat/wrong/lawnChair.png", "../images/therat/wrong/prison.png", "../images/therat/wrong/ramsay.png"]
+const avatarImages = ["../images/avatars/1.jpg", "../images/avatars/2.png", "../images/avatars/3.png", "../images/avatars/4.png", "../images/avatars/5.png", "../images/avatars/6.png", "../images/avatars/7.png", "../images/avatars/8.png", "../images/avatars/9.png", "../images/avatars/10.png", "../images/avatars/11.png", "../images/avatars/12.png", "../images/avatars/13.png", "../images/avatars/14.png", "../images/avatars/15.png", "../images/avatars/16.png", "../images/avatars/17.png", "../images/avatars/18.png", "../images/avatars/19.png", "../images/avatars/hot_dog.jpg"]
+const userUrl = 'https://localhost3000/users'  
+
   function variables() {
 
-        userUrl = 'https://localhost3000/users'
-        hostRight = ["../images/therat/right/amazed.png", "../images/therat/right/cool.png", "../images/therat/right/glimmer.png", "../images/therat/right/right.png", "../images/therat/right/roll.png", "../images/therat/right/wild.png", "../images/therat/right/wowRight.png"]
-        hostWrong = ["../images/therat/wrong/bigOOF.png", "../images/therat/wrong/crickets.png", "../images/therat/wrong/disappointedDad.png", "../images/therat/wrong/firstTime.png", "../images/therat/wrong/grandmaBridge.png", "../images/therat/wrong/hurt.png", "../images/therat/wrong/lawnChair.png", "../images/therat/wrong/prison.png", "../images/therat/wrong/ramsay.png"]
         modal = document.getElementById("myModal");
         winner = document.getElementById('winner')
         turn = 1;
@@ -22,14 +24,14 @@
         cards = deck.current
         user1info = document.getElementById("player1info")
         avatar1 = document.createElement("img")
-        avatar1.src = "../images/avatars/hot_dog.jpg"
+        avatar1.src = avatarImages[Math.floor(Math.random() * avatarImages.length)]
         hr1 = document.createElement("hr")
         hr1.className = "user-hr"
         user1nameSpace = document.createElement("p")
         user1nameSpace.innerText = "h o t d o g"
         user2info = document.getElementById("player2info")
         avatar2 = document.createElement("img")
-        avatar2.src = "../images/avatars/Ultimate-Meat-Lasagna-3-1.jpg"
+        avatar2.src = avatarImages[Math.floor(Math.random() * avatarImages.length)]
         hr2 = document.createElement("hr")
         hr2.className = "user-hr"
         user2nameSpace = document.createElement("p")
