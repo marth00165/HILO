@@ -67,6 +67,7 @@
     host = document.createElement("img")
     host.id = "ratrules"
     host.src = "../images/therat/ratRules.png"
+    host.addEventListener("click", openRules)
     body.appendChild(host)
     let tracker = document.getElementById("user1")
     tracker.id = "displayed"
@@ -441,6 +442,21 @@ function welcome(){
 
 }
 
+function openRules(){
+    console.log("clicked")
+    rulesModal = document.getElementById("rulesModal")
+    rulesModal.style.display = "block"
+    let span = document.getElementsByClassName("close")[0]
+    span.onclick = function() {
+        rulesModal.style.display = "none";
+      }
+      window.onclick = function(event) {
+        if (event.target == rulesModal) {
+          rulesModal.style.display = "none";
+        }
+      }
+}
+
 welcome()
 
 function main(){
@@ -448,3 +464,4 @@ function main(){
 
 
 }
+
