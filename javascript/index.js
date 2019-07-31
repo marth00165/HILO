@@ -315,7 +315,9 @@
 function welcome(){
   variables()
   clone = document.body.innerHTML
-  let body = document.getElementById('body')
+  let body = document.getElementById('footer')
+  let king = document.createElement("div")
+  king.id = "rat"
   let logo = document.createElement('h1')
   let motto = document.createElement('h3')
   let start = document.createElement('button')
@@ -324,16 +326,21 @@ function welcome(){
     body.removeChild(logo)
     body.removeChild(motto)
     body.removeChild(startButton)
+    body.removeChild(king)
     appendGame()
     player1Cards()
     player2Cards()
   })
+  let rat = document.createElement("img")
+  rat.src="../images/kingRat.png"
+  king.appendChild(rat)
   start.innerText = "NEW GAME"
-  logo.innerText = "Hi-Low"
+  logo.innerText = "Hi-Lo"
   motto.innerText = "Aim High Score Low"
   body.appendChild(logo)
   body.appendChild(motto)
   body.appendChild(startButton)
+  body.appendChild(king)
   startButton.appendChild(start)
 
 }
