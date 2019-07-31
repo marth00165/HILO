@@ -60,7 +60,7 @@
     }
 
   function appendGame(){
-
+    
     let tracker = document.getElementById("user1")
     tracker.id = "displayed"
     user1info.appendChild(avatar1)
