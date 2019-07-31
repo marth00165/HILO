@@ -1,5 +1,6 @@
   function variables() {
-        // Get the modal
+
+        userUrl = 'https://localhost3000/users'
         hostRight = ["../images/therat/right/amazed.png", "../images/therat/right/cool.png", "../images/therat/right/glimmer.png", "../images/therat/right/right.png", "../images/therat/right/roll.png", "../images/therat/right/wild.png", "../images/therat/right/wowRight.png"]
         hostWrong = ["../images/therat/wrong/bigOOF.png", "../images/therat/wrong/crickets.png", "../images/therat/wrong/disappointedDad.png", "../images/therat/wrong/firstTime.png", "../images/therat/wrong/grandmaBridge.png", "../images/therat/wrong/hurt.png", "../images/therat/wrong/lawnChair.png", "../images/therat/wrong/prison.png", "../images/therat/wrong/ramsay.png"]
         modal = document.getElementById("myModal");
@@ -69,12 +70,33 @@
     body.appendChild(host)
     let tracker = document.getElementById("user1")
     tracker.id = "displayed"
+    nameInput1 = document.createElement("input")
+    nameInput1.setAttribute("placeholder", "enter nickname")
+    nameInput2 = document.createElement("input")
+    nameInput2.setAttribute("placeholder", "enter nickname")
     user1info.appendChild(avatar1)
     user1info.appendChild(hr1)
-    user1info.appendChild(user1nameSpace)
+    user1info.appendChild(nameInput1)
     user2info.appendChild(avatar2)
     user2info.appendChild(hr2)
-    user2info.appendChild(user2nameSpace)
+    user2info.appendChild(nameInput2)
+    nameInput1.addEventListener("keypress", function(e){
+      var key = e.which || e.keyCode;
+      if(key === 13){
+        user1nameSpace.innerText = e.target.value
+        user1info.removeChild(nameInput1)
+        user1info.appendChild(user1nameSpace)
+      }
+    })
+    nameInput2.addEventListener("keypress", function(e){
+      var key = e.which || e.keyCode;
+      if(key === 13){
+        user2nameSpace.innerText = e.target.value
+        user2info.removeChild(nameInput2)
+        user2info.appendChild(user2nameSpace)
+      }
+    })
+
     //buttons append
     let smallbuttons = [higherButton, lowerButton]
     smallbuttons.forEach(function(button) {
@@ -209,7 +231,7 @@
             host.id = "rathost"
             host.className = ""
           }
-    } 
+    }
     else if (turn === 2 && user2Cards.length < 6) {
       ++user2Clicks
       content2.innerHTML = ""
@@ -391,8 +413,10 @@ function welcome(){
   king.id = "rat"
   let logo = document.createElement('h1')
   let motto = document.createElement('h3')
-     start = document.createElement('button')
-     startButton = document.getElementById('startButton')
+
+  start = document.createElement('button')
+  startButton = document.getElementById('startButton')
+
   startButton.addEventListener("click", function(e){
     body.removeChild(logo)
     body.removeChild(motto)
