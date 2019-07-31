@@ -19,11 +19,15 @@
         avatar1.src = "../images/avatars/hot_dog.jpg"
         hr1 = document.createElement("hr")
         hr1.className = "user-hr"
+        user1nameSpace = document.createElement("span")
+        user1nameSpace.innerText = "h o t d o g"
         user2info = document.getElementById("player2info")
         avatar2 = document.createElement("img")
-        avatar2.src = "../images/avatars/hot_dog.jpg"
+        avatar2.src = "../images/avatars/Ultimate-Meat-Lasagna-3-1.jpg"
         hr2 = document.createElement("hr")
         hr2.className = "user-hr"
+        user2nameSpace = document.createElement("span")
+        user2nameSpace.innerText = "El Curry La Lasagna"
         content = document.getElementById("content1")
         content2 = document.getElementById('content2')
         footer = document.getElementById('footer')
@@ -58,8 +62,10 @@
     tracker.id = "displayed"
     user1info.appendChild(avatar1)
     user1info.appendChild(hr1)
+    user1info.appendChild(user1nameSpace)
     user2info.appendChild(avatar2)
     user2info.appendChild(hr2)
+    user2info.appendChild(user2nameSpace)
     //buttons append
     let smallbuttons = [higherButton, lowerButton]
     smallbuttons.forEach(function(button) {
