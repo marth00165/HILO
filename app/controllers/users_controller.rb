@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(nickname: params[:nickname])
-    render json: @user
+    render json: @user, except: [:created_at, :updated_at]
   end
 
   def destroy
