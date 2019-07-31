@@ -25,14 +25,14 @@
         avatar1.src = "../images/avatars/hot_dog.jpg"
         hr1 = document.createElement("hr")
         hr1.className = "user-hr"
-        user1nameSpace = document.createElement("span")
+        user1nameSpace = document.createElement("p")
         user1nameSpace.innerText = "h o t d o g"
         user2info = document.getElementById("player2info")
         avatar2 = document.createElement("img")
         avatar2.src = "../images/avatars/Ultimate-Meat-Lasagna-3-1.jpg"
         hr2 = document.createElement("hr")
         hr2.className = "user-hr"
-        user2nameSpace = document.createElement("span")
+        user2nameSpace = document.createElement("p")
         user2nameSpace.innerText = "El Curry La Lasagna"
         content = document.getElementById("content1")
         content2 = document.getElementById('content2')
@@ -72,9 +72,11 @@
     let tracker = document.getElementById("user1")
     tracker.id = "displayed"
     nameInput1 = document.createElement("input")
+    nameInput1.maxLength = 16
     nameInput1.setAttribute("placeholder", "enter nickname")
     nameInput2 = document.createElement("input")
     nameInput2.setAttribute("placeholder", "enter nickname")
+    nameInput2.maxLength = 16
     user1info.appendChild(avatar1)
     user1info.appendChild(hr1)
     user1info.appendChild(nameInput1)
@@ -89,6 +91,11 @@
         user1info.appendChild(user1nameSpace)
       }
     })
+    nameInput1.addEventListener("blur", function(e){
+        user1nameSpace.innerText = e.target.value
+        user1info.removeChild(nameInput1)
+        user1info.appendChild(user1nameSpace)
+    })
     nameInput2.addEventListener("keypress", function(e){
       var key = e.which || e.keyCode;
       if(key === 13){
@@ -96,6 +103,11 @@
         user2info.removeChild(nameInput2)
         user2info.appendChild(user2nameSpace)
       }
+    })
+    nameInput2.addEventListener("blur", function(e){
+        user2nameSpace.innerText = e.target.value
+        user2info.removeChild(nameInput2)
+        user2info.appendChild(user2nameSpace)
     })
 
     //buttons append
