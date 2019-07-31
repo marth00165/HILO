@@ -1,4 +1,7 @@
   function variables() {
+        // Get the modal
+        modal = document.getElementById("myModal");
+        winner = document.getElementById('winner')
         turn = 1;
         user1Cards = []
         user2Cards = []
@@ -171,6 +174,7 @@
             content.innerHTML = ""
             console.log(deck.base)
             player1Cards()
+
           }, 1000)}
     } 
     else if (turn === 2 && user2Cards.length < 6) {
@@ -301,18 +305,43 @@
 
   function checkWinner(){
       if(user1Cards.length === 6){
-          alert(`Player 1 wins!! They guessed ${user1Clicks} time(s)`)
-          document.body.innerHTML = clone
-          welcome()
+
+          confetti.start()
+          let newGameButton = document.createElement("button")
+          newGameButton.innerText = "New Game"
+          winner.innerText = "Player 1 wins!"
+          newGameButton.addEventListener("click", function(e){
+            document.body.innerHTML = clone
+            welcome()
+          })
+          winner.appendChild(newGameButton)
+          modal.style.display = "block";
+
+
+          // alert("Player 1 wins!")
+          // document.body.innerHTML = clone
+          // welcome()
       }else if (user2Cards.length === 6){
-          alert(`Player 2 wins!! They guessed ${user2Clicks} time(s)`)
-          document.body.innerHTML = clone
-          welcome()
+          confetti.start()
+          let newGameButton = document.createElement("button")
+          newGameButton.innerText = "New Game"
+          winner.innerText = "Player 2 wins! "
+          newGameButton.addEventListener("click", function(e){
+            document.body.innerHTML = clone
+            welcome()
+          })
+          winner.appendChild(newGameButton)
+          modal.style.display = "block";
+          // alert("Player 2 wins!")
+          // document.body.innerHTML = clone
+          // welcome()
+
       }
   }
 
 
 function welcome(){
+  confetti.stop()
   variables()
   clone = document.body.innerHTML
   let body = document.getElementById('footer')
@@ -320,13 +349,14 @@ function welcome(){
   king.id = "rat"
   let logo = document.createElement('h1')
   let motto = document.createElement('h3')
-  let start = document.createElement('button')
-  let startButton = document.getElementById('startButton')
+     start = document.createElement('button')
+     startButton = document.getElementById('startButton')
   startButton.addEventListener("click", function(e){
     body.removeChild(logo)
     body.removeChild(motto)
     body.removeChild(startButton)
     body.removeChild(king)
+
     appendGame()
     player1Cards()
     player2Cards()
