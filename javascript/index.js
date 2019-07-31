@@ -5,8 +5,8 @@
         turn = 1;
         user1Cards = []
         user2Cards = []
-        user1Correct = []
-        user2Correct = []
+        user1Clicks = 0
+        user2Clicks = 0
         deck = new Deck()
         deck2 = new Deck()
         deck.shuffle()
@@ -120,6 +120,7 @@
 
     //player 1
     if (turn === 1 && user1Cards.length < 6) {
+      ++user1Clicks
       content.innerHTML = ""
       let card = deck.deal()
       user1Cards.push(card)
@@ -132,13 +133,11 @@
               changeTurns()
               content.innerHTML = ""
               player1Cards()
-      }, 2000)}else{
-      }
-
-
+      }, 1000)}
     }
     //player 2
      else if (turn === 2 && user2Cards.length < 6) {
+      ++user2Clicks
       content2.innerHTML = ""
       let card = deck2.deal()
       user2Cards.push(card)
@@ -146,13 +145,12 @@
       if (!compareCardsHigher(user2Cards)) {
         newBaseCardButton.disabled = false;
         turn = 1;
+        user2Cards = deck2.base.map(e => e)
         setTimeout(function() {
           changeTurns()
           content2.innerHTML = ""
-          user2Cards = deck2.base.map(e => e)
           player2Cards()
-      }, 2000)}else{
-      }
+      }, 1000)}
   }
   setTimeout(function () {
     enableMostButtons()
@@ -162,6 +160,7 @@
 
   function betLower(){
     if (turn === 1 && user1Cards.length < 6) {
+      ++user1Clicks
       content.innerHTML = ""
       let card = deck.deal()
       user1Cards.push(card)
@@ -169,16 +168,17 @@
       if (!compareCardsLower(user1Cards)) {
         newBaseCardButton.disabled = false;
           turn = 2;
+          user1Cards = deck.base.map(e => e)
           setTimeout(function() {
             changeTurns()
             content.innerHTML = ""
             console.log(deck.base)
-            user1Cards = deck.base.map(e => e)
             player1Cards()
-          }, 2000)}else{
-          }
-    }
+
+          }, 1000)}
+    } 
     else if (turn === 2 && user2Cards.length < 6) {
+      ++user2Clicks
       content2.innerHTML = ""
       let card = deck2.deal()
       user2Cards.push(card)
@@ -187,14 +187,12 @@
       if (!compareCardsLower(user2Cards)) {
         newBaseCardButton.disabled = false;
         turn = 1;
+        user2Cards = deck2.base.map(e => e)
         setTimeout(function() {
           changeTurns()
           content2.innerHTML = ""
-          user2Cards = deck2.base.map(e => e)
           player2Cards()
-
-
-      }, 2000)}else{
+      }, 1000)}else{
       }
     }
     setTimeout(function () {
@@ -307,6 +305,7 @@
 
   function checkWinner(){
       if(user1Cards.length === 6){
+
           confetti.start()
           let newGameButton = document.createElement("button")
           newGameButton.innerText = "New Game"
@@ -336,6 +335,7 @@
           // alert("Player 2 wins!")
           // document.body.innerHTML = clone
           // welcome()
+
       }
   }
 
@@ -344,25 +344,33 @@ function welcome(){
   confetti.stop()
   variables()
   clone = document.body.innerHTML
-  let body = document.getElementById('body')
+  let body = document.getElementById('footer')
+  let king = document.createElement("div")
+  king.id = "rat"
   let logo = document.createElement('h1')
   let motto = document.createElement('h3')
-   start = document.createElement('button')
-   startButton = document.getElementById('startButton')
-   start.addEventListener("click", function(e){
-     body.removeChild(logo)
-     body.removeChild(motto)
-     body.removeChild(startButton)
+     start = document.createElement('button')
+     startButton = document.getElementById('startButton')
+  startButton.addEventListener("click", function(e){
+    body.removeChild(logo)
+    body.removeChild(motto)
+    body.removeChild(startButton)
+    body.removeChild(king)
+
     appendGame()
     player1Cards()
     player2Cards()
   })
+  let rat = document.createElement("img")
+  rat.src="../images/kingRat.png"
+  king.appendChild(rat)
   start.innerText = "NEW GAME"
-  logo.innerText = "Hi-Low"
+  logo.innerText = "Hi-Lo"
   motto.innerText = "Aim High Score Low"
   body.appendChild(logo)
   body.appendChild(motto)
   body.appendChild(startButton)
+  body.appendChild(king)
   startButton.appendChild(start)
 
 }
