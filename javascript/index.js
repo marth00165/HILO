@@ -1,5 +1,7 @@
   function variables() {
         // Get the modal
+        hostRight = ["../images/therat/right/amazed.png", "../images/therat/right/cool.png", "../images/therat/right/glimmer.png", "../images/therat/right/right.png", "../images/therat/right/roll.png", "../images/therat/right/wild.png", "../images/therat/right/wowRight.png"]
+        hostWrong = ["../images/therat/wrong/bigOOF.png", "../images/therat/wrong/crickets.png", "../images/therat/wrong/disappointedDad.png", "../images/therat/wrong/firstTime.png", "../images/therat/wrong/grandmaBridge.png", "../images/therat/wrong/hurt.png", "../images/therat/wrong/lawnChair.png", "../images/therat/wrong/prison.png", "../images/therat/wrong/ramsay.png"]
         modal = document.getElementById("myModal");
         winner = document.getElementById('winner')
         turn = 1;
@@ -60,7 +62,11 @@
     }
 
   function appendGame(){
-    
+    let body = document.body
+    host = document.createElement("img")
+    host.id = "ratrules"
+    host.src = "../images/therat/ratRules.png"
+    body.appendChild(host)
     let tracker = document.getElementById("user1")
     tracker.id = "displayed"
     user1info.appendChild(avatar1)
@@ -132,6 +138,9 @@
       user1Cards.push(card)
       player1Cards()
         if (!compareCardsHigher(user1Cards)) {
+         host.src = hostWrong[Math.floor(Math.random() * hostWrong.length)]
+         host.id = "rathost"
+         host.className = ""
           newBaseCardButton.disabled = false;
             turn = 2;
             user1Cards = deck.base.map(e => e)
@@ -139,7 +148,11 @@
               changeTurns()
               content.innerHTML = ""
               player1Cards()
-      }, 1000)}
+      }, 2000)}else {
+        host.src = hostRight[Math.floor(Math.random() * hostRight.length)]
+        host.id = "rathost"
+        host.className = ""
+      }
     }
     //player 2
      else if (turn === 2 && user2Cards.length < 6) {
@@ -149,6 +162,9 @@
       user2Cards.push(card)
       player2Cards()
       if (!compareCardsHigher(user2Cards)) {
+        host.src = hostWrong[Math.floor(Math.random() * hostWrong.length)]
+        host.id = "rathost"
+        host.className = ""
         newBaseCardButton.disabled = false;
         turn = 1;
         user2Cards = deck2.base.map(e => e)
@@ -156,12 +172,16 @@
           changeTurns()
           content2.innerHTML = ""
           player2Cards()
-      }, 1000)}
+      }, 2000)}else{
+        host.src = hostRight[Math.floor(Math.random() * hostRight.length)]
+        host.id = "rathost"
+        host.className = ""
+      }
   }
   setTimeout(function () {
     enableMostButtons()
     checkWinner()
-  }, 1000);
+  }, 2000);
 }
 
   function betLower(){
@@ -172,6 +192,9 @@
       user1Cards.push(card)
       player1Cards()
       if (!compareCardsLower(user1Cards)) {
+        host.src = hostWrong[Math.floor(Math.random() * hostWrong.length)]
+        host.id = "rathost"
+        host.className = ""
         newBaseCardButton.disabled = false;
           turn = 2;
           user1Cards = deck.base.map(e => e)
@@ -181,7 +204,11 @@
             console.log(deck.base)
             player1Cards()
 
-          }, 1000)}
+          }, 2000)}else{
+            host.src = hostRight[Math.floor(Math.random() * hostRight.length)]
+            host.id = "rathost"
+            host.className = ""
+          }
     } 
     else if (turn === 2 && user2Cards.length < 6) {
       ++user2Clicks
@@ -191,6 +218,9 @@
       player2Cards()
 
       if (!compareCardsLower(user2Cards)) {
+        host.src = hostWrong[Math.floor(Math.random() * hostWrong.length)]
+        host.id = "rathost"
+        host.className = ""
         newBaseCardButton.disabled = false;
         turn = 1;
         user2Cards = deck2.base.map(e => e)
@@ -198,13 +228,16 @@
           changeTurns()
           content2.innerHTML = ""
           player2Cards()
-      }, 1000)}else{
+      }, 2000)}else{
+        host.src = hostRight[Math.floor(Math.random() * hostRight.length)]
+        host.id = "rathost"
+        host.className = ""
       }
     }
     setTimeout(function () {
       checkWinner()
       enableMostButtons()
-    }, 1000);
+    }, 2000);
   }
 
 
@@ -279,6 +312,7 @@
   }
 
   function disableButtons(){
+      host.className = "hidden"
       higherButton.disabled = true
       lowerButton.disabled = true
       holdButton.disabled = true
@@ -290,6 +324,7 @@
   }
 
   function enableButtons(){
+    host.className = "hidden"
     higherButton.disabled = false
     lowerButton.disabled = false
     holdButton.disabled = false
@@ -301,6 +336,7 @@
   }
 
   function enableMostButtons(){
+    host.className = "hidden"
     higherButton.disabled = false
     lowerButton.disabled = false
     holdButton.disabled = false
@@ -368,7 +404,7 @@ function welcome(){
     player2Cards()
   })
   let rat = document.createElement("img")
-  rat.src="../images/kingRat.png"
+  rat.src="../images/therat/kingRat.png"
   king.appendChild(rat)
   start.innerText = "NEW GAME"
   logo.innerText = "Hi-Lo"
