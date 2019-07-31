@@ -16,6 +16,10 @@ input{
   max-width: 50%;
 }
 
+input::placeholder{
+  color: #264F7A;
+}
+
 body {
   background-color: #38B6FF;
   padding-top: 1%;
