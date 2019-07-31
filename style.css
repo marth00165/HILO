@@ -7,7 +7,7 @@
 }
 body {
   background-color: #38B6FF;
-
+  padding-top: 1%;
 }
 h1 {
   margin-top: -5%;
@@ -266,17 +266,34 @@ h3 {
 }
 
 #rat{
-  display: flex;
-  margin-top: 4%;
-  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 31%;
+  margin-bottom: -1%;
 }
 
 #rat img {
-  max-height: 300px;
+  max-height: 275px;
 }
 
-#rathost {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
+#rathost{
+  position: fixed;
+  max-height: 300px;
+  bottom: 0;
+  right: 0;
+  margin-right: 0%;
+  margin-bottom: 0%;
+}
+
+#ratrules{
+  position: fixed;
+  max-height: 600px;
+  bottom: 0;
+  right: 0;
+  margin-right: 0%;
+  margin-bottom: 0%;
+}
+
+.hidden{
+  display: none
 }
