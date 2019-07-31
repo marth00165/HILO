@@ -1,15 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap');
+
+*{
+  font-family: 'Gloria Hallelujah', cursive;
+  /* font-family: 'Indie Flower', cursive; */
+}
 body {
   background-color: #38B6FF;
 
 }
 h1 {
+  margin-top: -5%;
   display: flex;
   justify-content: center;
+  color: white;
+  font-size: 48px;
 }
 
 h3 {
   display: flex;
   justify-content: center;
+  color: white;
+  font-size: 24px;
 }
 
 #startButton {
@@ -160,4 +172,14 @@ h3 {
   background-color: white;
   color: white;
   height: .5px;
+}
+
+#rat{
+  display: flex;
+  margin-top: 4%;
+  justify-content: center;
+}
+
+#rat img {
+  max-height: 300px;
 }
