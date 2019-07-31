@@ -455,13 +455,20 @@ function welcome(){
 }
 
 function openRules(){
-    console.log("clicked")
+
     rulesModal = document.getElementById("rulesModal")
     rulesModal.style.display = "block"
     let span = document.getElementsByClassName("close")[0]
     span.onclick = function() {
         rulesModal.style.display = "none";
       }
+    window.addEventListener("keydown",function(e){
+      var key = e.which || e.keyCode;
+
+      if ( rulesModal.style.display = "block" && key === 27){
+        rulesModal.style.display = "none";
+      }
+    })
       window.onclick = function(event) {
         if (event.target == rulesModal) {
           rulesModal.style.display = "none";
@@ -469,11 +476,8 @@ function openRules(){
       }
 }
 
-welcome()
+main()
 
 function main(){
-
-
-
+  welcome()
 }
-
