@@ -16,8 +16,9 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(params.require(:game).permit(:user_id, :guesses))
-    @user = User.find(params[:game][:user_id])
-    render json: @games, except: [:created_at, :updated_at]
-
+    if @game.save
+      @user = User.find(params[:game][:user_id])
+      render json: @games, except: [:created_at, :updated_at]
+    end
   end
 end
