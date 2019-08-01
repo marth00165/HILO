@@ -11,7 +11,7 @@ class GamesController < ApplicationController
   end
 
   def new
-    @game = Game.new(params.require(:game).permit(:user_id, :guesses)
+    @game = Game.new(params.require(:game).permit(:user_id, :guesses))
   end
 
   def create
