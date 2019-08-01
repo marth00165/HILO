@@ -16,11 +16,10 @@ class GamesController < ApplicationController
 
   def create
 
-    @user = User.find_or_create_by(nickname: params[:game][:nickname])
+    @user = User.find_or_create_by(nickname: params[:nickname])
     user_id = @user.id
-    @game = Game.new(params[:game][:guesses], user_id: user_id)
+    @game = Game.new(params[:guesses], user_id: user_id)
     if @game.save
-      @user = User.find(params[:game][:nickname])
       render json: @game, include: [:user]
     end
   end
