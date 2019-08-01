@@ -7,7 +7,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    render json: @game, except: [:created_at, :updated_at]
+    render json: @game, include: [:user]
   end
 
   def new
