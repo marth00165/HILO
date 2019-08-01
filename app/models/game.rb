@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   belongs_to :user
 
-  def getRank(game_id)
+  def self.getRank(game_id)
     currentGame = Game.find(game_id)
     gameList = Game.all.sort_by{|game| game.guesses}.reverse
     game = gameList.find(currentGame)
