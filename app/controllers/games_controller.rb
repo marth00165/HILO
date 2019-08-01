@@ -19,8 +19,9 @@ class GamesController < ApplicationController
     @user = User.find_or_create_by(nickname: params[:nickname])
     user_id = @user.id
     @game = Game.new(guesses: params[:guesses], user_id: user_id)
+    rank = Game.getRank(@game.id)
     if @game.save
-      render json: @game, include: [:user]
+      render json: @game, include: [:user, rank: rank.to_json]
     end
   end
 end
