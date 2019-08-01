@@ -18,7 +18,7 @@ class GamesController < ApplicationController
     @game = Game.new(params.require(:game).permit(:user_id, :guesses))
     if @game.save
       @user = User.find(params[:game][:user_id])
-      render json: @game, except: [:created_at, :updated_at]
+      render json: @game, include: [:user]
     end
   end
 end
